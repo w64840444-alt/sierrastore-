@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,71 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sierra Store</title>
     <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- CABECERA -->
+    <!-- ===== CABECERA ===== -->
     <header id="cabecera">
         <img id="logo" src="" alt="Sierra Store" onerror="this.style.display='none'">
         <h1 id="nombreTienda">Sierra Store</h1>
         <p id="eslogan">Moda con estilo</p>
         <div id="infoPrincipal"></div>
-    </header>
-
-    <!-- NAVEGACIÓN -->
-    <nav>
-        <a href="#vestidos">Vestidos</a>
-        <a href="#blusas">Blusas</a>
-        <a href="#chaquetas">Chaquetas y Blazers</a>
-        <a href="#jeans">Jeans</a>
-        <button id="btnCarrito" onclick="abrirCarrito()">🛒 Carrito (<span id="contadorCarrito">0</span>)</button>
-    </nav>
-
-    <!-- CONTENIDO -->
-    <main id="contenido">
-        <section id="vestidos">
-            <h2>👗 Vestidos</h2>
-            <div class="galeria" data-categoria="vestidos"></div>
-        </section>
-
-        <section id="blusas">
-            <h2>👚 Blusas</h2>
-            <div class="galeria" data-categoria="blusas"></div>
-        </section>
-
-        <section id="chaquetas">
-            <h2>🧥 Chaquetas y Blazers</h2>
-            <div class="galeria" data-categoria="chaquetas"></div>
-        </section>
-
-        <section id="jeans">
-            <h2>👖 Jeans</h2>
-            <div class="galeria" data-categoria="jeans"></div>
-        </section>
-    </main>
-
-    <!-- REDES SOCIALES -->
-    <section id="redes" class="redes-sociales">
-        <h2>📱 Síguenos</h2>
-        <div class="redes-botones">
-            <a id="linkInstagram" href="#" target="_blank" class="btn-red btn-instagram oculto">
-                📷 Instagram
+        
+        <div class="header-redes" id="headerRedes">
+            <a id="headerInstagram" href="#" target="_blank" class="icono-red oculto" title="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+                </svg>
             </a>
-            <a id="linkFacebook" href="#" target="_blank" class="btn-red btn-facebook oculto">
-                👍 Facebook
+            <a id="headerFacebook" href="#" target="_blank" class="icono-red oculto" title="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12z"/>
+                </svg>
+            </a>
+            <a id="headerWhatsapp" href="#" target="_blank" class="icono-red oculto" title="WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5s0-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+                </svg>
             </a>
         </div>
-    </section>
+    </header>
 
+    <!-- ===== MENÚ DE CATEGORÍAS ===== -->
+    <nav id="menuCategorias">
+        <button class="btn-categoria" data-cat="vestidos" onclick="abrirCategoria('vestidos')">
+            <span class="icono">👗</span>
+            <span>Vestidos</span>
+        </button>
+        <button class="btn-categoria" data-cat="blusas" onclick="abrirCategoria('blusas')">
+            <span class="icono">👚</span>
+            <span>Blusas</span>
+        </button>
+        <button class="btn-categoria" data-cat="chaquetas" onclick="abrirCategoria('chaquetas')">
+            <span class="icono">🧥</span>
+            <span>Chaquetas</span>
+        </button>
+        <button class="btn-categoria" data-cat="jeans" onclick="abrirCategoria('jeans')">
+            <span class="icono">👖</span>
+            <span>Jeans</span>
+        </button>
+    </nav>
+
+    <!-- ===== VISTA INICIO (categorías grandes) ===== -->
+    <main id="vistaInicio" class="vista-activa">
+        <div class="categorias-grid">
+            <div class="categoria-card" onclick="abrirCategoria('vestidos')">
+                <div class="categoria-card-fondo" data-cat="vestidos"></div>
+                <div class="categoria-card-texto">
+                    <h3>Vestidos</h3>
+                    <span>Ver colección →</span>
+                </div>
+            </div>
+            <div class="categoria-card" onclick="abrirCategoria('blusas')">
+                <div class="categoria-card-fondo" data-cat="blusas"></div>
+                <div class="categoria-card-texto">
+                    <h3>Blusas</h3>
+                    <span>Ver colección →</span>
+                </div>
+            </div>
+            <div class="categoria-card" onclick="abrirCategoria('chaquetas')">
+                <div class="categoria-card-fondo" data-cat="chaquetas"></div>
+                <div class="categoria-card-texto">
+                    <h3>Chaquetas y Blazers</h3>
+                    <span>Ver colección →</span>
+                </div>
+            </div>
+            <div class="categoria-card" onclick="abrirCategoria('jeans')">
+                <div class="categoria-card-fondo" data-cat="jeans"></div>
+                <div class="categoria-card-texto">
+                    <h3>Jeans</h3>
+                    <span>Ver colección →</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== VISTA GALERÍA (se abre al tocar categoría) ===== -->
+    <main id="vistaGaleria" class="vista-oculta">
+        <div class="galeria-header">
+            <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+            <h2 id="tituloGaleria">Vestidos</h2>
+            <div class="espacio"></div>
+        </div>
+        <div id="galeriaProductos" class="galeria-productos"></div>
+        <p id="galeriaVacia" class="galeria-vacia oculto">Próximamente nuevos productos...</p>
+    </main>
+
+    <!-- ===== BOTÓN CARRITO ===== -->
+    <button id="btnCarrito" onclick="abrirCarrito()">
+        🛒 <span id="contadorCarrito">0</span>
+    </button>
+
+    <!-- ===== FOOTER ===== -->
     <footer>
         <p id="footerTexto">© 2025 Sierra Store</p>
         <div id="contactoFooter"></div>
     </footer>
 
-    <!-- BOTÓN ADMIN -->
-    <button id="btnAdmin" onclick="abrirLogin()">⚙️</button>
+    <!-- ===== BOTÓN ADMIN ===== -->
+    <button id="btnAdmin" onclick="abrirLogin()" title="Panel Admin">⚙️</button>
 
-    <!-- LOGIN ADMIN -->
+    <!-- ===== LOGIN ADMIN ===== -->
     <div id="loginAdmin" class="oculto modal-overlay">
         <div class="modal-caja">
             <button class="cerrar" onclick="cerrarLogin()">✖</button>
@@ -80,7 +126,7 @@
         </div>
     </div>
 
-    <!-- PANEL ADMIN -->
+    <!-- ===== PANEL ADMIN ===== -->
     <div id="panelAdmin" class="oculto modal-overlay">
         <div class="panel-contenido">
             <button class="cerrar" onclick="cerrarAdmin()">✖</button>
@@ -92,8 +138,8 @@
                 <button class="tab" onclick="cambiarTab(event,'blusas')">Blusas</button>
                 <button class="tab" onclick="cambiarTab(event,'chaquetas')">Chaquetas</button>
                 <button class="tab" onclick="cambiarTab(event,'jeans')">Jeans</button>
-                <button class="tab" onclick="cambiarTab(event,'redes')">📱 Redes</button>
-                <button class="tab" onclick="cambiarTab(event,'config')">⚙️ Config</button>
+                <button class="tab" onclick="cambiarTab(event,'contacto')">📱 Contacto</button>
+                <button class="tab" onclick="cambiarTab(event,'config')">🔧 Config</button>
                 <button class="tab" onclick="cambiarTab(event,'exportar')">💾 Exportar</button>
             </div>
 
@@ -111,29 +157,29 @@
                 <label>Texto del pie de página:</label>
                 <input type="text" id="inputFooter">
                 
-                <label>Contacto (email/teléfono/redes):</label>
-                <textarea id="inputContacto" rows="3"></textarea>
-                
                 <label>Logotipo:</label>
                 <input type="file" id="inputLogo" accept="image/*">
                 
                 <button onclick="guardarGeneral()">💾 Guardar cambios</button>
             </div>
 
-            <!-- REDES SOCIALES -->
-            <div id="tab-redes" class="tab-contenido oculto">
-                <h3>📱 Redes Sociales</h3>
-                <p style="color:#999; font-size:0.9em; margin-bottom:15px;">
-                    Pega el enlace completo de tu perfil. Si lo dejas vacío, no aparecerá el botón.
-                </p>
+            <!-- CONTACTO -->
+            <div id="tab-contacto" class="tab-contenido oculto">
+                <h3>📱 Datos de contacto</h3>
                 
-                <label>📷 Enlace de Instagram:</label>
+                <label>Número de WhatsApp (sin + ni espacios):</label>
+                <input type="text" id="inputWhatsapp" placeholder="5356645513">
+                
+                <label>Enlace de Instagram:</label>
                 <input type="text" id="inputInstagram" placeholder="https://instagram.com/tu_usuario">
                 
-                <label>👍 Enlace de Facebook:</label>
+                <label>Enlace de Facebook:</label>
                 <input type="text" id="inputFacebook" placeholder="https://facebook.com/tu_pagina">
                 
-                <button onclick="guardarRedes()">💾 Guardar redes</button>
+                <label>Email (opcional):</label>
+                <input type="text" id="inputEmail" placeholder="contacto@sierrastore.com">
+                
+                <button onclick="guardarContacto()">💾 Guardar contacto</button>
             </div>
 
             <!-- CATEGORÍAS -->
@@ -144,7 +190,7 @@
                     <input type="text" id="nombre-vestidos" placeholder="Nombre del producto">
                     <input type="text" id="precio-vestidos" placeholder="Precio (ej: 25.00 CUP)">
                     <textarea id="desc-vestidos" placeholder="Descripción (opcional)" rows="2"></textarea>
-                    <button onclick="agregarProducto('vestidos')">➕ Añadir</button>
+                    <button onclick="agregarProducto('vestidos')">➕ Añadir producto</button>
                     <p id="progreso-vestidos" class="progreso"></p>
                 </div>
                 <div id="lista-vestidos" class="lista-admin"></div>
@@ -157,7 +203,7 @@
                     <input type="text" id="nombre-blusas" placeholder="Nombre del producto">
                     <input type="text" id="precio-blusas" placeholder="Precio">
                     <textarea id="desc-blusas" placeholder="Descripción (opcional)" rows="2"></textarea>
-                    <button onclick="agregarProducto('blusas')">➕ Añadir</button>
+                    <button onclick="agregarProducto('blusas')">➕ Añadir producto</button>
                     <p id="progreso-blusas" class="progreso"></p>
                 </div>
                 <div id="lista-blusas" class="lista-admin"></div>
@@ -170,7 +216,7 @@
                     <input type="text" id="nombre-chaquetas" placeholder="Nombre del producto">
                     <input type="text" id="precio-chaquetas" placeholder="Precio">
                     <textarea id="desc-chaquetas" placeholder="Descripción (opcional)" rows="2"></textarea>
-                    <button onclick="agregarProducto('chaquetas')">➕ Añadir</button>
+                    <button onclick="agregarProducto('chaquetas')">➕ Añadir producto</button>
                     <p id="progreso-chaquetas" class="progreso"></p>
                 </div>
                 <div id="lista-chaquetas" class="lista-admin"></div>
@@ -183,21 +229,18 @@
                     <input type="text" id="nombre-jeans" placeholder="Nombre del producto">
                     <input type="text" id="precio-jeans" placeholder="Precio">
                     <textarea id="desc-jeans" placeholder="Descripción (opcional)" rows="2"></textarea>
-                    <button onclick="agregarProducto('jeans')">➕ Añadir</button>
+                    <button onclick="agregarProducto('jeans')">➕ Añadir producto</button>
                     <p id="progreso-jeans" class="progreso"></p>
                 </div>
                 <div id="lista-jeans" class="lista-admin"></div>
             </div>
 
-            <!-- CONFIGURACIÓN -->
+            <!-- CONFIG -->
             <div id="tab-config" class="tab-contenido oculto">
-                <h3>⚙️ Configuración</h3>
+                <h3>🔧 Configuración técnica</h3>
                 
                 <label>Contraseña del panel:</label>
                 <input type="text" id="inputPass">
-                
-                <label>Número de WhatsApp (sin + ni espacios):</label>
-                <input type="text" id="inputWhatsapp">
                 
                 <label>Cloud Name de Cloudinary:</label>
                 <input type="text" id="inputCloudName">
@@ -232,7 +275,7 @@
         </div>
     </div>
 
-    <!-- MODAL PRODUCTO -->
+    <!-- ===== MODAL PRODUCTO ===== -->
     <div id="modalProducto" class="oculto modal-overlay" onclick="cerrarModal()">
         <div class="modal-caja modal-producto" onclick="event.stopPropagation()">
             <button class="cerrar" onclick="cerrarModal()">✖</button>
@@ -244,7 +287,7 @@
         </div>
     </div>
 
-    <!-- CARRITO -->
+    <!-- ===== CARRITO ===== -->
     <div id="modalCarrito" class="oculto modal-overlay" onclick="cerrarCarrito()">
         <div class="modal-caja modal-carrito" onclick="event.stopPropagation()">
             <button class="cerrar" onclick="cerrarCarrito()">✖</button>
@@ -260,4 +303,4 @@
 
     <script src="app.js"></script>
 </body>
-    </html>
+</html>
