@@ -1,306 +1,537 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sierra Store</title>
-    <link rel="stylesheet" href="estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- ===== CABECERA ===== -->
-    <header id="cabecera">
-        <img id="logo" src="" alt="Sierra Store" onerror="this.style.display='none'">
-        <h1 id="nombreTienda">Sierra Store</h1>
-        <p id="eslogan">Moda con estilo</p>
-        <div id="infoPrincipal"></div>
-        
-        <div class="header-redes" id="headerRedes">
-            <a id="headerInstagram" href="#" target="_blank" class="icono-red oculto" title="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="2" y="2" width="20" height="20" rx="5"/>
-                    <circle cx="12" cy="12" r="4"/>
-                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
-                </svg>
-            </a>
-            <a id="headerFacebook" href="#" target="_blank" class="icono-red oculto" title="Facebook">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M22 12c0-5.5-4.5-10-10-10S2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12z"/>
-                </svg>
-            </a>
-            <a id="headerWhatsapp" href="#" target="_blank" class="icono-red oculto" title="WhatsApp">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5s0-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.5.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
-                </svg>
-            </a>
-        </div>
-    </header>
+:root {
+    --negro: #000000;
+    --negro-suave: #0d0d0d;
+    --gris-oscuro: #1a1a1a;
+    --gris-medio: #2a2a2a;
+    --blanco: #ffffff;
+    --blanco-suave: #e8e8e8;
+    --gris-texto: #999999;
+    --borde: #333333;
+}
 
-    <!-- ===== MENÚ DE CATEGORÍAS ===== -->
-    <nav id="menuCategorias">
-        <button class="btn-categoria" data-cat="vestidos" onclick="abrirCategoria('vestidos')">
-            <span class="icono">👗</span>
-            <span>Vestidos</span>
-        </button>
-        <button class="btn-categoria" data-cat="blusas" onclick="abrirCategoria('blusas')">
-            <span class="icono">👚</span>
-            <span>Blusas</span>
-        </button>
-        <button class="btn-categoria" data-cat="chaquetas" onclick="abrirCategoria('chaquetas')">
-            <span class="icono">🧥</span>
-            <span>Chaquetas</span>
-        </button>
-        <button class="btn-categoria" data-cat="jeans" onclick="abrirCategoria('jeans')">
-            <span class="icono">👖</span>
-            <span>Jeans</span>
-        </button>
-    </nav>
+body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    line-height: 1.6;
+    min-height: 100vh;
+}
 
-    <!-- ===== VISTA INICIO (categorías grandes) ===== -->
-    <main id="vistaInicio" class="vista-activa">
-        <div class="categorias-grid">
-            <div class="categoria-card" onclick="abrirCategoria('vestidos')">
-                <div class="categoria-card-fondo" data-cat="vestidos"></div>
-                <div class="categoria-card-texto">
-                    <h3>Vestidos</h3>
-                    <span>Ver colección →</span>
-                </div>
-            </div>
-            <div class="categoria-card" onclick="abrirCategoria('blusas')">
-                <div class="categoria-card-fondo" data-cat="blusas"></div>
-                <div class="categoria-card-texto">
-                    <h3>Blusas</h3>
-                    <span>Ver colección →</span>
-                </div>
-            </div>
-            <div class="categoria-card" onclick="abrirCategoria('chaquetas')">
-                <div class="categoria-card-fondo" data-cat="chaquetas"></div>
-                <div class="categoria-card-texto">
-                    <h3>Chaquetas y Blazers</h3>
-                    <span>Ver colección →</span>
-                </div>
-            </div>
-            <div class="categoria-card" onclick="abrirCategoria('jeans')">
-                <div class="categoria-card-fondo" data-cat="jeans"></div>
-                <div class="categoria-card-texto">
-                    <h3>Jeans</h3>
-                    <span>Ver colección →</span>
-                </div>
-            </div>
-        </div>
-    </main>
+/* ===== CABECERA ===== */
+header {
+    text-align: center;
+    padding: 50px 20px 30px;
+    background: linear-gradient(180deg, #0d0d0d 0%, #000000 100%);
+    border-bottom: 1px solid var(--borde);
+    position: relative;
+}
 
-    <!-- ===== VISTA GALERÍA (se abre al tocar categoría) ===== -->
-    <main id="vistaGaleria" class="vista-oculta">
-        <div class="galeria-header">
-            <button class="btn-volver" onclick="volverInicio()">← Volver</button>
-            <h2 id="tituloGaleria">Vestidos</h2>
-            <div class="espacio"></div>
-        </div>
-        <div id="galeriaProductos" class="galeria-productos"></div>
-        <p id="galeriaVacia" class="galeria-vacia oculto">Próximamente nuevos productos...</p>
-    </main>
+#logo {
+    max-width: 130px;
+    max-height: 130px;
+    border-radius: 50%;
+    border: 2px solid var(--blanco);
+    margin-bottom: 20px;
+    object-fit: cover;
+    display: inline-block;
+}
 
-    <!-- ===== BOTÓN CARRITO ===== -->
-    <button id="btnCarrito" onclick="abrirCarrito()">
-        🛒 <span id="contadorCarrito">0</span>
-    </button>
+header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5em;
+    font-weight: 600;
+    color: var(--blanco);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <p id="footerTexto">© 2025 Sierra Store</p>
-        <div id="contactoFooter"></div>
-    </footer>
+#eslogan {
+    color: var(--gris-texto);
+    font-size: 0.95em;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
 
-    <!-- ===== BOTÓN ADMIN ===== -->
-    <button id="btnAdmin" onclick="abrirLogin()" title="Panel Admin">⚙️</button>
+#infoPrincipal {
+    max-width: 650px;
+    margin: 25px auto 0;
+    color: var(--blanco-suave);
+    white-space: pre-line;
+    font-size: 1em;
+    line-height: 1.8;
+    font-weight: 300;
+}
 
-    <!-- ===== LOGIN ADMIN ===== -->
-    <div id="loginAdmin" class="oculto modal-overlay">
-        <div class="modal-caja">
-            <button class="cerrar" onclick="cerrarLogin()">✖</button>
-            <h2>🔐 Acceso Administrador</h2>
-            <input type="password" id="inputPassword" placeholder="Contraseña" onkeydown="if(event.key==='Enter')verificarPassword()">
-            <button onclick="verificarPassword()">Entrar</button>
-        </div>
-    </div>
+/* ICONOS REDES CABECERA */
+.header-redes {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 25px;
+}
 
-    <!-- ===== PANEL ADMIN ===== -->
-    <div id="panelAdmin" class="oculto modal-overlay">
-        <div class="panel-contenido">
-            <button class="cerrar" onclick="cerrarAdmin()">✖</button>
-            <h2>⚙️ Panel de Administración</h2>
+.icono-red {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--borde);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blanco);
+    transition: all 0.3s ease;
+}
 
-            <div class="tabs">
-                <button class="tab activo" onclick="cambiarTab(event,'general')">General</button>
-                <button class="tab" onclick="cambiarTab(event,'vestidos')">Vestidos</button>
-                <button class="tab" onclick="cambiarTab(event,'blusas')">Blusas</button>
-                <button class="tab" onclick="cambiarTab(event,'chaquetas')">Chaquetas</button>
-                <button class="tab" onclick="cambiarTab(event,'jeans')">Jeans</button>
-                <button class="tab" onclick="cambiarTab(event,'contacto')">📱 Contacto</button>
-                <button class="tab" onclick="cambiarTab(event,'config')">🔧 Config</button>
-                <button class="tab" onclick="cambiarTab(event,'exportar')">💾 Exportar</button>
-            </div>
+.icono-red svg {
+    width: 20px;
+    height: 20px;
+}
 
-            <!-- GENERAL -->
-            <div id="tab-general" class="tab-contenido">
-                <label>Nombre de la tienda:</label>
-                <input type="text" id="inputNombre">
-                
-                <label>Eslogan:</label>
-                <input type="text" id="inputEslogan">
-                
-                <label>Información principal:</label>
-                <textarea id="inputInfo" rows="4"></textarea>
-                
-                <label>Texto del pie de página:</label>
-                <input type="text" id="inputFooter">
-                
-                <label>Logotipo:</label>
-                <input type="file" id="inputLogo" accept="image/*">
-                
-                <button onclick="guardarGeneral()">💾 Guardar cambios</button>
-            </div>
+.icono-red:hover {
+    background: var(--blanco);
+    color: var(--negro);
+    border-color: var(--blanco);
+    transform: translateY(-3px);
+}
 
-            <!-- CONTACTO -->
-            <div id="tab-contacto" class="tab-contenido oculto">
-                <h3>📱 Datos de contacto</h3>
-                
-                <label>Número de WhatsApp (sin + ni espacios):</label>
-                <input type="text" id="inputWhatsapp" placeholder="5356645513">
-                
-                <label>Enlace de Instagram:</label>
-                <input type="text" id="inputInstagram" placeholder="https://instagram.com/tu_usuario">
-                
-                <label>Enlace de Facebook:</label>
-                <input type="text" id="inputFacebook" placeholder="https://facebook.com/tu_pagina">
-                
-                <label>Email (opcional):</label>
-                <input type="text" id="inputEmail" placeholder="contacto@sierrastore.com">
-                
-                <button onclick="guardarContacto()">💾 Guardar contacto</button>
-            </div>
+/* ===== MENÚ CATEGORÍAS ===== */
+nav {
+    background: var(--negro-suave);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 1px solid var(--borde);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-            <!-- CATEGORÍAS -->
-            <div id="tab-vestidos" class="tab-contenido oculto">
-                <h3>Productos en Vestidos</h3>
-                <div class="form-producto">
-                    <input type="file" id="foto-vestidos" accept="image/*" multiple>
-                    <input type="text" id="nombre-vestidos" placeholder="Nombre del producto">
-                    <input type="text" id="precio-vestidos" placeholder="Precio (ej: 25.00 CUP)">
-                    <textarea id="desc-vestidos" placeholder="Descripción (opcional)" rows="2"></textarea>
-                    <button onclick="agregarProducto('vestidos')">➕ Añadir producto</button>
-                    <p id="progreso-vestidos" class="progreso"></p>
-                </div>
-                <div id="lista-vestidos" class="lista-admin"></div>
-            </div>
+.btn-categoria {
+    background: transparent;
+    border: 1px solid var(--borde);
+    color: var(--blanco);
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
 
-            <div id="tab-blusas" class="tab-contenido oculto">
-                <h3>Productos en Blusas</h3>
-                <div class="form-producto">
-                    <input type="file" id="foto-blusas" accept="image/*" multiple>
-                    <input type="text" id="nombre-blusas" placeholder="Nombre del producto">
-                    <input type="text" id="precio-blusas" placeholder="Precio">
-                    <textarea id="desc-blusas" placeholder="Descripción (opcional)" rows="2"></textarea>
-                    <button onclick="agregarProducto('blusas')">➕ Añadir producto</button>
-                    <p id="progreso-blusas" class="progreso"></p>
-                </div>
-                <div id="lista-blusas" class="lista-admin"></div>
-            </div>
+.btn-categoria:hover, .btn-categoria.activo {
+    background: var(--blanco);
+    color: var(--negro);
+    border-color: var(--blanco);
+}
 
-            <div id="tab-chaquetas" class="tab-contenido oculto">
-                <h3>Productos en Chaquetas y Blazers</h3>
-                <div class="form-producto">
-                    <input type="file" id="foto-chaquetas" accept="image/*" multiple>
-                    <input type="text" id="nombre-chaquetas" placeholder="Nombre del producto">
-                    <input type="text" id="precio-chaquetas" placeholder="Precio">
-                    <textarea id="desc-chaquetas" placeholder="Descripción (opcional)" rows="2"></textarea>
-                    <button onclick="agregarProducto('chaquetas')">➕ Añadir producto</button>
-                    <p id="progreso-chaquetas" class="progreso"></p>
-                </div>
-                <div id="lista-chaquetas" class="lista-admin"></div>
-            </div>
+.btn-categoria .icono {
+    font-size: 1.1em;
+}
 
-            <div id="tab-jeans" class="tab-contenido oculto">
-                <h3>Productos en Jeans</h3>
-                <div class="form-producto">
-                    <input type="file" id="foto-jeans" accept="image/*" multiple>
-                    <input type="text" id="nombre-jeans" placeholder="Nombre del producto">
-                    <input type="text" id="precio-jeans" placeholder="Precio">
-                    <textarea id="desc-jeans" placeholder="Descripción (opcional)" rows="2"></textarea>
-                    <button onclick="agregarProducto('jeans')">➕ Añadir producto</button>
-                    <p id="progreso-jeans" class="progreso"></p>
-                </div>
-                <div id="lista-jeans" class="lista-admin"></div>
-            </div>
+/* ===== VISTAS ===== */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
 
-            <!-- CONFIG -->
-            <div id="tab-config" class="tab-contenido oculto">
-                <h3>🔧 Configuración técnica</h3>
-                
-                <label>Contraseña del panel:</label>
-                <input type="text" id="inputPass">
-                
-                <label>Cloud Name de Cloudinary:</label>
-                <input type="text" id="inputCloudName">
-                
-                <label>Upload Preset de Cloudinary:</label>
-                <input type="text" id="inputPreset">
-                
-                <button onclick="guardarConfig()">💾 Guardar configuración</button>
-            </div>
+.vista-activa { display: block; }
+.vista-oculta { display: none; }
 
-            <!-- EXPORTAR -->
-            <div id="tab-exportar" class="tab-contenido oculto">
-                <h3>💾 Exportar e Importar</h3>
-                <p>1️⃣ <strong>Exportar:</strong> Descarga el archivo <code>datos.json</code>.</p>
-                <p>2️⃣ <strong>Subir a GitHub:</strong> Reemplaza <code>datos.json</code> en tu repositorio.</p>
-                <p>3️⃣ Los clientes verán los cambios automáticamente.</p>
-                
-                <button onclick="exportarDatos()">⬇️ Descargar datos.json</button>
-                
-                <hr>
-                
-                <p><strong>Importar</strong> (restaurar):</p>
-                <input type="file" id="importarArchivo" accept=".json">
-                <button onclick="importarDatos()">⬆️ Importar</button>
-                
-                <hr>
-                
-                <p><strong>⚠️ Zona peligrosa:</strong></p>
-                <button class="peligro" onclick="borrarTodo()">🗑️ Borrar todo</button>
-            </div>
+/* ===== VISTA INICIO - CATEGORÍAS ===== */
+.categorias-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
 
-        </div>
-    </div>
+.categoria-card {
+    position: relative;
+    height: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--gris-oscuro);
+    border: 1px solid var(--borde);
+    transition: all 0.4s ease;
+}
 
-    <!-- ===== MODAL PRODUCTO ===== -->
-    <div id="modalProducto" class="oculto modal-overlay" onclick="cerrarModal()">
-        <div class="modal-caja modal-producto" onclick="event.stopPropagation()">
-            <button class="cerrar" onclick="cerrarModal()">✖</button>
-            <img id="modalImg" src="">
-            <h3 id="modalNombre"></h3>
-            <p id="modalPrecio" class="precio"></p>
-            <p id="modalDesc"></p>
-            <button class="btn-agregar" onclick="agregarAlCarritoDesdeModal()">🛒 Añadir al carrito</button>
-        </div>
-    </div>
+.categoria-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--blanco);
+    box-shadow: 0 15px 40px rgba(255,255,255,0.1);
+}
 
-    <!-- ===== CARRITO ===== -->
-    <div id="modalCarrito" class="oculto modal-overlay" onclick="cerrarCarrito()">
-        <div class="modal-caja modal-carrito" onclick="event.stopPropagation()">
-            <button class="cerrar" onclick="cerrarCarrito()">✖</button>
-            <h2>🛒 Tu Carrito</h2>
-            <div id="carritoItems"></div>
-            <div id="carritoVacio" style="text-align:center; padding:30px; color:#999;">
-                Tu carrito está vacío
-            </div>
-            <div id="carritoTotal" class="carrito-total"></div>
-            <button id="btnPedido" class="btn-whatsapp" onclick="enviarPedido()">📱 Enviar pedido por WhatsApp</button>
-        </div>
-    </div>
+.categoria-card-fondo {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    transition: all 0.4s ease;
+}
 
-    <script src="app.js"></script>
-</body>
-</html>
+.categoria-card:hover .categoria-card-fondo {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+.categoria-card-texto {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 25px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.95) 0%, transparent 100%);
+    z-index: 2;
+}
+
+.categoria-card-texto h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8em;
+    color: var(--blanco);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.categoria-card-texto span {
+    color: var(--blanco-suave);
+    font-size: 0.85em;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* ===== VISTA GALERÍA ===== */
+.galeria-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--borde);
+}
+
+.galeria-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2em;
+    color: var(--blanco);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    flex: 1;
+    margin: 0 15px;
+}
+
+.btn-volver {
+    background: transparent;
+    border: 1px solid var(--borde);
+    color: var(--blanco);
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+    background: var(--blanco);
+    color: var(--negro);
+}
+
+.espacio { width: 100px; }
+
+/* GALERÍA 2 COLUMNAS */
+.galeria-productos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.producto-card {
+    background: var(--gris-oscuro);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--borde);
+    transition: all 0.4s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--blanco);
+    box-shadow: 0 15px 35px rgba(255,255,255,0.08);
+}
+
+.producto-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.producto-card:hover img {
+    transform: scale(1.05);
+}
+
+.producto-card-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.producto-card-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--blanco);
+    font-size: 1.15em;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.producto-card-info .precio {
+    color: var(--blanco-suave);
+    font-weight: 600;
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+
+.galeria-vacia {
+    text-align: center;
+    color: var(--gris-texto);
+    padding: 60px 20px;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* ===== BOTÓN CARRITO ===== */
+#btnCarrito {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--blanco);
+    color: var(--negro);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1em;
+    z-index: 150;
+    box-shadow: 0 5px 20px rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+#btnCarrito:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+}
+
+/* ===== BOTÓN ADMIN ===== */
+#btnAdmin {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--gris-oscuro);
+    color: var(--blanco);
+    border: 1px solid var(--borde);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 1.4em;
+    cursor: pointer;
+    display: none;
+    z-index: 200;
+    transition: all 0.3s ease;
+}
+
+#btnAdmin.visible { display: flex; align-items: center; justify-content: center; }
+#btnAdmin:hover {
+    background: var(--blanco);
+    color: var(--negro);
+    transform: rotate(45deg) scale(1.1);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: var(--negro-suave);
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--gris-texto);
+    border-top: 1px solid var(--borde);
+    margin-top: 60px;
+    white-space: pre-line;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+
+footer a { color: var(--blanco); }
+
+/* ===== MODALES ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    backdrop-filter: blur(5px);
+}
+
+.modal-caja {
+    background: var(--gris-oscuro);
+    padding: 35px;
+    border-radius: 15px;
+    border: 1px solid var(--borde);
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+}
+
+.panel-contenido {
+    background: var(--gris-oscuro);
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 35px;
+    border-radius: 15px;
+    border: 1px solid var(--borde);
+    position: relative;
+    width: 100%;
+}
+
+.cerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    color: var(--blanco);
+    border: 1px solid var(--borde);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.cerrar:hover {
+    background: var(--blanco);
+    color: var(--negro);
+}
+
+.panel-contenido h2, .modal-caja h2 {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--blanco);
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 1.6em;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--borde);
+    padding-bottom: 15px;
+}
+
+.tab {
+    background: transparent;
+    color: var(--blanco-suave);
+    border: 1px solid var(--borde);
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+
+.tab.activo, .tab:hover {
+    background: var(--blanco);
+    color: var(--negro);
+    border-color: var(--blanco);
+}
+
+.tab-contenido label {
+    display: block;
+    color: var(--blanco);
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+
+.tab-contenido input[type="text"],
+.tab-contenido input[type="password"],
+.tab-contenido input[type="file"],
+.tab-contenido textarea,
+.modal-caja input {
+    width: 100%;
+    background: var(--negro);
+    color: var(--blanco);
+    border: 1px solid var(--borde);
+    padding: 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1em;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.tab-contenido input:focus, .tab-contenido textarea:focus, .modal-caja input:focus {
+    outline: none;
+    border-color: var(--blanco);
+}
+
+.tab-contenido button, .modal-caja button:not(.cerrar) {
+    background: var(--blanco);
+    color: var(--negro);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    letter-spacing: 1px;
+}
+
+.tab-contenido button:hover, .modal-caja button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+}
+
+.tab-contenido button.peligro {
+    background: #c0392b;
+    color: var(--blanco);
+}
+
+.progreso {
+    color: var(--blanco-suave);
